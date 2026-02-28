@@ -170,3 +170,12 @@ We simulate rider dispatch timing and compute:
 > Conservative estimate (excludes retention & brand impact).
 
 # Project Structure
+├── dataset_generation.py
+├── feature_engineering.ipynb
+├── Model_Comparison.ipynb
+├── model_training.ipynb
+├── business_simulation.ipynb
+├── rider_simulation.ipynb
+├── financial_impact.ipynb
+├── kpt_final_max_optimized.pkl
+└── README.md
