@@ -1,8 +1,174 @@
-# Improving-Kitchen-Prep-Time-KPT-Prediction-to-Optimize-Rider-Assignment-and-Customer-ETA-at-Zomato
+# SmartKPT
+### Improving Kitchen Prep Time (KPT) Prediction to Optimize Rider Assignment and Customer ETA
 
-# Description: 
-Food delivery services are highly dependent on the accurate estimation of Kitchen Preparation Time (KPT) to optimize rider assignment and estimate the correct customer ETA. However, KPT is dynamically affected by factors such as restaurant volume, time of day, order complexity, number of items, and real-time demand patterns.
+---
 
-Inaccurate KPT estimation results in riders arriving early or late, increased idle time for riders, suboptimal resource allocation, increased operational costs, and customer dissatisfaction due to incorrect ETAs. Even minor inaccuracies in KPT estimation during peak times can cause substantial degradation in delivery performance and customer satisfaction.
+## Project Overview
 
-The proposed project aims to develop a data-driven, real-time KPT estimation system that incorporates historical data, restaurant volume indicators, order attributes, and temporal variables to make more accurate and dynamic KPT predictions. This will enable optimized rider assignment, minimize idle time, and improve overall delivery efficiency.
+Food delivery platforms heavily rely on accurate **Kitchen Prep Time (KPT)** prediction to:
+
+- Dispatch riders efficiently  
+- Provide reliable customer ETAs  
+- Reduce SLA violations  
+- Minimize refund costs  
+
+Traditional systems use **static restaurant averages**, which fail during congestion, peak hours, or demand spikes.
+
+This project builds a **congestion-aware, production-grade ML pipeline** to dynamically predict prep time and simulate its impact on:
+
+- Late deliveries  
+- Rider idle time  
+- Severe delays  
+- Financial savings  
+
+---
+
+## Problem Statement
+
+Static ETA estimation leads to:
+
+- Rider idle waiting at restaurants  
+- Late deliveries during peak congestion  
+- Refund payouts for severe delays  
+- Poor customer experience  
+
+We solve this by:
+
+> Predicting prep time dynamically using real-time operational signals and simulating full business impact.
+
+---
+
+## 🧠 Solution Architecture
+
+### 1️⃣ Synthetic Operational Data Generation
+
+We simulate:
+
+- 200 restaurants  
+- 30 days of operations  
+- 5-minute arrival windows  
+- Realistic lunch/dinner peaks  
+- Weather and festival spikes  
+- Nonlinear congestion behavior  
+- Heavy-tail rare delays  
+
+This creates **550K+ realistic order records** with operational variability.
+
+---
+
+### 2️⃣ Feature Engineering
+
+Key engineered signals:
+
+- Kitchen utilization  
+- Queue length  
+- Congestion regime (bucketized stress levels)  
+- Congestion × complexity interaction  
+- Log queue transformation  
+- Time cyclic features  
+
+These features help model nonlinear congestion dynamics.
+
+---
+
+### 3️⃣ Congestion-Aware ML Model
+
+We use:
+
+- **LightGBM Regressor**
+- Huber loss (robust to extreme delays)
+- TimeSeries cross-validation
+- Congestion-weighted training
+- Early stopping
+
+**Why LightGBM?**
+
+- Handles nonlinear effects  
+- Efficient on large datasets  
+- Production scalable  
+- Strong performance on tabular data  
+
+---
+
+## 📊 Model Performance
+
+| Metric | Value |
+|--------|-------|
+| MAE | ~2.0 minutes |
+| RMSE | ~3.7 minutes |
+| R² | ~0.86 |
+| Congestion MAE | ~2.7 minutes |
+
+The model significantly improves performance during high-utilization scenarios.
+
+---
+
+# 📈 Business Impact Simulation
+
+We simulate dispatch decisions using:
+
+- **Baseline:** Static restaurant average  
+- **ML Model:** Dynamic congestion-aware ETA  
+
+---
+
+## 🕒 Late Delivery Rate
+
+| System | Late Rate |
+|--------|-----------|
+| Baseline | 10.11% |
+| ML Model | 1.72% |
+
+✅ **82% reduction in late deliveries**
+
+---
+
+## 🚨 Severe Delay Rate (>10 min)
+
+| System | Severe Rate |
+|--------|------------|
+| Baseline | 1.8% |
+| ML Model | 0.75% |
+
+✅ **58% reduction in severe delays**
+
+---
+
+## 🚴 Rider Impact Simulation
+
+We simulate rider dispatch timing and compute:
+
+- Rider idle waiting  
+- Food waiting at restaurant  
+- Occurrence rates  
+
+### Results
+
+| Metric | Baseline | ML |
+|--------|----------|----|
+| Avg Rider Wait | 2.6 min | 0.43 min |
+| Rider Wait Rate | 45% | 12% |
+
+✅ **83% reduction in rider idle time**
+
+---
+
+# 💰 Financial Impact Estimation
+
+### Assumptions
+
+- ₹2 per rider idle minute  
+- ₹40 refund per severe delay  
+- Scaled to **1,000,000 orders**
+
+### Projected Savings per 1M Orders
+
+- Rider Idle Savings: ₹4.32M  
+- Refund Savings: ₹0.42M  
+- **Total Estimated Savings: ₹4.73M**
+
+> Conservative estimate (excludes retention & brand impact).
+
+---
+
+# 🏗 Project Structure
