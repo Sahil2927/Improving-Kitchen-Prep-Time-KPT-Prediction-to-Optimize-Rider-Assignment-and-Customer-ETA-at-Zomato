@@ -38,7 +38,7 @@ We solve this by:
 
 ---
 
-## 🧠 Solution Architecture
+## Solution Architecture
 
 ### 1️⃣ Synthetic Operational Data Generation
 
@@ -90,7 +90,7 @@ We use:
 
 ---
 
-## 📊 Model Performance
+## Model Performance
 
 | Metric | Value |
 |--------|-------|
@@ -103,7 +103,7 @@ The model significantly improves performance during high-utilization scenarios.
 
 ---
 
-# 📈 Business Impact Simulation
+# Business Impact Simulation
 
 We simulate dispatch decisions using:
 
@@ -112,29 +112,29 @@ We simulate dispatch decisions using:
 
 ---
 
-## 🕒 Late Delivery Rate
+## Late Delivery Rate
 
 | System | Late Rate |
 |--------|-----------|
 | Baseline | 10.11% |
 | ML Model | 1.72% |
 
-✅ **82% reduction in late deliveries**
+**82% reduction in late deliveries**
 
 ---
 
-## 🚨 Severe Delay Rate (>10 min)
+## Severe Delay Rate (>10 min)
 
 | System | Severe Rate |
 |--------|------------|
 | Baseline | 1.8% |
 | ML Model | 0.75% |
 
-✅ **58% reduction in severe delays**
+**58% reduction in severe delays**
 
 ---
 
-## 🚴 Rider Impact Simulation
+## Rider Impact Simulation
 
 We simulate rider dispatch timing and compute:
 
@@ -149,11 +149,11 @@ We simulate rider dispatch timing and compute:
 | Avg Rider Wait | 2.6 min | 0.43 min |
 | Rider Wait Rate | 45% | 12% |
 
-✅ **83% reduction in rider idle time**
+**83% reduction in rider idle time**
 
 ---
 
-# 💰 Financial Impact Estimation
+# Financial Impact Estimation
 
 ### Assumptions
 
@@ -169,6 +169,4 @@ We simulate rider dispatch timing and compute:
 
 > Conservative estimate (excludes retention & brand impact).
 
----
-
-# 🏗 Project Structure
+# Project Structure
